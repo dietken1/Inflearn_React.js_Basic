@@ -16,5 +16,6 @@
     "url": "https://github.com/dietken1/Inflearn_React.js_Basic/issues"
   },
   "homepage": "https://github.com/dietken1/Inflearn_React.js_Basic#readme",
-  "description": ""
+  "description": "",
+  "type": "module"
 }
