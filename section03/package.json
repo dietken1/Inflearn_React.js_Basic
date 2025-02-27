@@ -17,5 +17,8 @@
   },
   "homepage": "https://github.com/dietken1/Inflearn_React.js_Basic#readme",
   "description": "",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "randomcolor": "^0.6.2"
+  }
 }
