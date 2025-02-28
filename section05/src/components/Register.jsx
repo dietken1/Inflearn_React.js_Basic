@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 // 회원관리 폼
 // 1. 이름
@@ -14,18 +14,30 @@ const Register = () => {
         bio : '',
     });
 
+    const countRef = useRef(0);   // useRef는 리렌더링 되지 않음
+    const inputRef = useRef();
+
     const onChange = (e) => {
-        // console.log(e.target.name, e.target.value);
+        countRef.current++;
+        console.log(countRef.current);
         setInput({
             ...input,
             [e.target.name] : e.target.value // []를 사용하면 key로 사용가능
         });
     };
 
+    const onSubmit = () => {
+        if(input.name === '') {
+            // 이름을 입력하는 DOM요소에 포커스
+            inputRef.current.focus();
+        }
+    };
+
     return (
         <>
             <div>
                 <input
+                    ref={inputRef}
                     name='name'
                     value={input.name}
                     onChange={onChange}
@@ -54,6 +66,8 @@ const Register = () => {
             <div>
                 <textarea name='bio' value={input.bio} onChange={onChange}></textarea>
             </div>
+
+            <button onClick={onSubmit}>제출</button>
         </>
     );
 }
