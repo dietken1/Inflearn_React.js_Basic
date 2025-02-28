@@ -2,8 +2,8 @@ import './List.css'
 import TodoItem from './TodoItem'
 import { useState } from 'react';
 
-const List = ({todos}) => {
-    const [search, setSearch] = useState([]);
+const List = ({todos, onUpdate}) => {
+    const [search, setSearch] = useState('');
 
     const onChangeSearch = (e) => {
         setSearch(e.target.value);
@@ -14,7 +14,9 @@ const List = ({todos}) => {
             return todos;
         }
         return todos.filter((todo) => 
-            todo.content.toLowerCase().includes(search.toLowerCase())
+            todo.content
+            .toLowerCase()
+            .includes(search.toLowerCase())
         );
     };
 
@@ -26,7 +28,7 @@ const List = ({todos}) => {
             <input value={search} onChange={onChangeSearch} placeholder="검색어를 입력하세요" />
             <div className='todos_wrapper'>
             {filteredTodos.map((todo) => { // 리액트에서 리스트로 나타내는 방법
-                return <TodoItem key={todo.id} {...todo} />;
+                return <TodoItem key={todo.id} {...todo} onUpdate={onUpdate} />;
             })}
             </div>
         </div>
