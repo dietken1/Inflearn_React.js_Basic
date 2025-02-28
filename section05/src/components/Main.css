@@ -1,0 +1,4 @@
+.logout, .login {
+    background-color: red;
+    border-bottom: 5px solid green;
+}
