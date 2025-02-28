@@ -1,3 +1,4 @@
+// 리액트에서 데이터의 흐름은 위에서 아래로만 가능!
 import './App.css'
 import Viewer from './components/Viewer';
 import Controller from './components/Controller';
