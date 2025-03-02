@@ -133,6 +133,31 @@ return (
 const todos = useContext(TodoStateContext);
 const {onUpdate, onDelete} = useContext(TodoDispatchContext);
 ```
+<br>
+
+## **동적 경로**
+### 10. useParams (URL Parameter)
+```url
+http://localhost:5173/new/1
+http://localhost:5173/new/2
+http://localhost:5173/new/3
+```
+```jsx
+const params = useParams();
+console.log(params);
+return <div>{params.id}번 일기입니다 ~~</div>;
+```
+
+### 11. useSearchParams (Query String)
+```url
+http:/localhost:5173/?value=hello
+http:/localhost:5173/?value=bye
+http:/localhost:5173/?value=good
+```
+```jsx
+const [params, setParams] = useSearchParams();
+console.log(params.get('value'));
+```
 
 ## React의 작동 방식
 ### **React는 MPA방식이 아닌 SPA방식으로 동작함**
