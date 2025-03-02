@@ -94,3 +94,8 @@ const onUpdate = useCallback((targetId) => {
 ```
 
 ### 최적화 코드는 마구잡이로 사용하면 오히려 효율이 나빠질수도 있으니 주의!
+
+## **Context**
+## 8. createContext
+
+## 9. useContext

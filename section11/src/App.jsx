@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useRef, useReducer, useCallback } from 'react'
+import { useState, useRef, useReducer, useCallback, createContext } from 'react'
 import Header from './components/Header'
 import Editor from './components/Editor'
 import List from './components/List'
@@ -37,11 +37,15 @@ function reducer(state, action) {
   return state;
 }
 
+export const TodoContext = createContext();
+
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(3);
 
-  const onCreate = (content) => {
+  // 처음에 마운트되었을때만 생성됨. 즉, 아무리 리렌더링이 되어도 다시 생성X
+  // useCallback을 사용한 최적화
+  const onCreate = useCallback((content) => {
     dispatch({
       type : "CREATE",
       data : {
@@ -51,7 +55,7 @@ function App() {
         date : new Date().getTime(),
       }
     });
-  };
+  }, []);
 
   const onUpdate = useCallback((targetId) => {
     dispatch({
@@ -60,8 +64,6 @@ function App() {
     });
   }, []);
 
-  // 처음에 마운트되었을때만 생성됨. 즉, 아무리 리렌더링이 되어도 다시 생성X
-  // useCallback을 사용한 최적화
   const onDelete = useCallback((targetId) => {
     dispatch({
       type : 'DELETE',
@@ -72,8 +74,10 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{todos, onCreate, onUpdate, onDelete}}>
+        <Editor />
+        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+      </TodoContext.Provider>
     </div>
   );
 }
