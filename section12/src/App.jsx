@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import New from './pages/New'
 import Diary from './pages/Diary'
 import NotFound from './pages/NotFound'
+import Button from './components/Button'
+import Header from './components/Header'
 
 import {getEmotionImage} from './util/get-emotion-image';
 
@@ -19,19 +21,15 @@ function App() {
 
   return (
     <>
-      <div>
-        <img src={getEmotionImage(1)} />
-        <img src={getEmotionImage(2)} />
-        <img src={getEmotionImage(3)} />
-        <img src={getEmotionImage(4)} />
-        <img src={getEmotionImage(5)} />
-      </div>
-      <div>
-        <Link to={'/'}>Home</Link>
-        <Link to={'/new'}>New</Link>
-        <Link to={'/diary'}>Diary</Link>
-      </div>
-      <button onClick={onClickButton}>New 페이지로 이동</button>
+      <Header
+        title={'Header'}
+        leftChild={<Button text={'Left'} />}
+        rightChild={<Button text={'Right'} />}
+      />
+
+      <Button text={'12344'} type={''} />
+      <Button text={'12344'} type={'POSITIVE'} />
+      <Button text={'12344'} type={'NEGATIVE'} />
       {/* 1. Routes컴포넌트 안에는 Route컴포넌트만 사용 가능 */}
       {/* 2. Routes컴포넌트 외부의 요소는 모든 페이지에 공통적으로 렌더링됨 */}
       <Routes>

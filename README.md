@@ -38,7 +38,7 @@ function reducer(state, action) {
 // Exam컴포넌트
 const Exam = () => {
     const [state, dispatch] = useReducer(reducer, 0); // (reducer함수, 초기값)
-    const onClickExan = () => {
+    const onClickExam = () => {
         dispatch({  // dispatch함수는 인수로 액션 객체를 가짐
             type : 'INCREASE',
             data : 1
