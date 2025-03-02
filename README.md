@@ -159,6 +159,15 @@ const [params, setParams] = useSearchParams();
 console.log(params.get('value'));
 ```
 
+### 12. useNavigate
+**버튼 클릭같은 특정 이벤트가 발생했을 때 페이지를 이동시키는 리액트 훅**
+```jsx
+const nav = useNavigate();
+const onClickButton = (() => {
+  nav('/new');
+});
+```
+
 ## React의 작동 방식
 ### **React는 MPA방식이 아닌 SPA방식으로 동작함**
 - ### MPA : 서버가 여러개의 페이지를 가지고 있어서 페이지 이동 시 모든 요소 교체 -> 페이지 이동이 매끄럽지 않음
