@@ -33,6 +33,7 @@ function reducer(state, action) {
     if(actiom.type === 'INCREASE') {
         return (state + action.data);
     }
+}
 
 // Exam컴포넌트
 const Exam = () => {
@@ -43,9 +44,9 @@ const Exam = () => {
             data : 1
         });
     }
-    ```
-    ```
-    ```
+                                ```
+                                ```
+                                ```
 }
 ```
 <br>
@@ -110,9 +111,10 @@ const memoizedDispatch = useMemo(()=>{
 
 export const TodoStateContext = createContext();    // State용 Context
 export const TodoDispatchContext = createContext(); // 함수용 Context
-''
-''
-''
+                                
+                                ```
+                                ```
+                                ```
 return (
     <div className='App'>
       <TodoStateContext.Provider value={todos}>
