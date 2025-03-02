@@ -22,19 +22,23 @@ const List = ({todos, onUpdate, onDelete}) => {
 
     const filteredTodos = getFilteredData();
 
-    const getAnalyzedData = () => {
-        const totalCount = todos.length;
-        const doneCount = todos.filter((todo)=>todo.isDone).length;
-        const notDoneCount = totalCount - doneCount;
+    // 기존 데이터 계산  및 반환 함수
+    // const getAnalyzedData = () => {
+    //     const totalCount = todos.length;
+    //     const doneCount = todos.filter((todo)=>todo.isDone).length;
+    //     const notDoneCount = totalCount - doneCount;
 
-        return {
-            totalCount,
-            doneCount,
-            notDoneCount
-        };
-    };
+    //     return {
+    //         totalCount,
+    //         doneCount,
+    //         notDoneCount
+    //     };
+    // };
+    // const { totalCount, doneCount, notDoneCount } = getAnalyzedData();
 
-    useMemo(()=>{
+    // useMemo를 적용시킨 데이터 계산  및 반환 함수
+    // -> 컴포넌트가 리렌더링 되더라도 todos가 안바뀌면 작동 X
+    const { totalCount, doneCount, notDoneCount } = useMemo(()=>{
         const totalCount = todos.length;
         const doneCount = todos.filter((todo)=>todo.isDone).length;
         const notDoneCount = totalCount - doneCount;
@@ -45,8 +49,6 @@ const List = ({todos, onUpdate, onDelete}) => {
             notDoneCount
         };
     }, [todos]);
-
-    const { totalCount, doneCount, notDoneCount } = getAnalyzedData();
 
     return (
         <div className="List">

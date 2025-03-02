@@ -50,4 +50,44 @@ const Exam = () => {
 ```
 
 ## 5. useMemo
-**메모이제이션 기법을 기반으로 불필요한 연산을 최적화하는 리액트 훅**
+**메모이제이션 기법을 기반으로 불필요한 연산을 최적화하는 리액트 훅**<br>
+```jsx
+const { totalCount, doneCount, notDoneCount } =
+    useMemo(()=>{
+            const totalCount = todos.length;
+            const doneCount = todos.filter((todo)=>todo.isDone).length;
+            const notDoneCount = totalCount - doneCount;
+
+            return {
+                totalCount,
+                doneCount,
+                notDoneCount
+            };
+    }, [todos]);
+```
+
+## 6. memo
+**Props중, 함수(객체타입, 즉 주소로 저장됨)는 같은 함수를 전달하더라도 주소가 달라져서 리렌더링이 발생**<br>
+**-> 이를 해결하기 위한 기능**
+```jsx
+export default memo(TodoItem, (prevProps, nextProps)=>{
+    if(prevProps.id !== nextProps.id) return false;
+    if(prevProps.isDone !== nextProps.isDone) return false;
+    if(prevProps.content !== nextProps.content) return false;
+    if(prevProps.date !== nextProps.date) return false;
+
+    return true;
+});
+```
+
+## 7. useCallback
+**함수가 리렌더링과 상관없이 딱 한번만 생성되게(혹은 특정 조건에 따라)하는 리액트 훅**
+**memo대신에 사용 가능함**
+```jsx
+const onUpdate = useCallback((targetId) => {
+    dispatch({
+      type : 'UPDATE',
+      data : targetId,
+    });
+  }, []);
+```

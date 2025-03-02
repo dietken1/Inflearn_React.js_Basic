@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useRef, useReducer } from 'react'
+import { useState, useRef, useReducer, useCallback } from 'react'
 import Header from './components/Header'
 import Editor from './components/Editor'
 import List from './components/List'
@@ -53,20 +53,21 @@ function App() {
     });
   };
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type : 'UPDATE',
       data : targetId,
     });
-  };
+  }, []);
 
-  const onDelete = (targetId) => {
-    // 인수 : todos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새 배열
+  // 처음에 마운트되었을때만 생성됨. 즉, 아무리 리렌더링이 되어도 다시 생성X
+  // useCallback을 사용한 최적화
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type : 'DELETE',
       data : targetId,
     });
-  };
+  }, [])
 
   return (
     <div className='App'>
