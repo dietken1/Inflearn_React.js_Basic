@@ -6,7 +6,6 @@ import New from './pages/New'
 import Diary from './pages/Diary'
 import Edit from './pages/Edit'
 import NotFound from './pages/NotFound'
-import { useContext } from 'react'
 import { useMemo } from 'react'
 
 // 1. "/" : 모든 일기를 조회하는 Home 페이지
