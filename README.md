@@ -145,7 +145,7 @@ http://localhost:5173/new/3
 ```jsx
 const params = useParams();
 console.log(params);
-return <div>{params.id}번 일기입니다 ~~</div>;
+return <div>{params.id}번 일기입니다</div>;
 ```
 
 ### 11. useSearchParams (Query String)
